@@ -1,13 +1,12 @@
-﻿using System;
+﻿using QuanLyBanHang.Fuctions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 
 namespace QuanLyBanHang
 {
@@ -16,6 +15,24 @@ namespace QuanLyBanHang
         public fMain()
         {
             InitializeComponent();
+        }
+
+        private void kháchHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fDanhMucKhachHang f = new fDanhMucKhachHang();
+            f.ShowDialog();
+        }
+
+        private void nhânViênToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fDanhMucNhanVien f = new fDanhMucNhanVien();
+            f.ShowDialog();
+        }
+
+        private void cấuHinhgToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fCauHinh f = new fCauHinh();
+            f.ShowDialog();
         }
     }
 }

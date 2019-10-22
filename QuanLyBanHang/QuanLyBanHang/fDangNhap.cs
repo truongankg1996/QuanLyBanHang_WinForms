@@ -8,7 +8,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using QuanLyBanHang.Data;
 
 namespace QuanLyBanHang
 {
@@ -19,26 +18,15 @@ namespace QuanLyBanHang
             InitializeComponent();
         }
 
-        private void stackPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btDangNhap_Click(object sender, EventArgs e)
         {
-            var taiKhoan = DataProvider.Ins.DB.employees.Where(x => x.last_name == txbTenDangNhap.Text && x.password == txbMaKhau.Text).SingleOrDefault();
-            if (taiKhoan != null)
+            if (txbTenDangNhap.Text == "admin" && txbMatKhau.Text == "admin" )
             {
                 fMain f = new fMain();
                 this.Hide();
                 f.ShowDialog();
                 this.Show();
             }
-            else
-            {
-                MessageBox.Show("Bạn nhập sai tên đăng nhập hoặc mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
         }
     }
 }
