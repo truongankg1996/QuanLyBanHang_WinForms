@@ -34,5 +34,12 @@ namespace QuanLyBanHang
             fCauHinh f = new fCauHinh();
             f.ShowDialog();
         }
+
+        private void đặtHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fDatHang f = new fDatHang();
+            f.ShowDialog();
+
+        }
     }
 }

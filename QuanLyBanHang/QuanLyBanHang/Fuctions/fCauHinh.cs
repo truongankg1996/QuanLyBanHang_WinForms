@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.SqlClient;
+using QuanLyBanHang.Data;
 
 namespace QuanLyBanHang.Fuctions
 {
@@ -28,33 +29,25 @@ namespace QuanLyBanHang.Fuctions
         {
             string query = "SELECT * FROM configs";
 
-            
-        }
-
-        private void btThem_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(keyTextBox.Text) || string.IsNullOrEmpty(valueTextBox.Text))
-            {
-                MessageBox.Show("Vui lòng kiểm tra dữ liệu đã nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            string query = @"INSERT INTO   configs ([key], [value]) VALUES (@key, @value)";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(query, connection))
+            //SqlConnection sqlConnection = DataProvider.GetSqlConnection();
+                using (SqlCommand command = new SqlCommand(query, DataProvider.GetSqlConnection()))
                 {
                     try
                     {
-                        connection.Open();
+                    DataProvider.GetSqlConnection().Open();
 
-                        command.CommandType = CommandType.Text;
-                        command.Parameters.AddWithValue("@key", keyTextBox.Text);
-                        command.Parameters.AddWithValue("@value", valueTextBox.Text);
+                        // Tạo object từ class SqlDataAdapter (dùng để lấy dữ liệu)
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        adapter.SelectCommand = command;
 
-                        int efffect = command.ExecuteNonQuery();
-                        connection.Close();
+                        // Đổ dữ liệu vào dataset
+                        adapter.Fill(quanLyBanHangDataSet.configs);
+
+                        // Hiển thị dữ liệu
+                        configsBindingSource.DataSource = quanLyBanHangDataSet.configs;
+                        dgvCauHinh.Refresh();
+
+                    DataProvider.GetSqlConnection().Close();
 
                         LoadCauHinh();
                     }
@@ -64,7 +57,43 @@ namespace QuanLyBanHang.Fuctions
                         throw;
                     }
                 }
-            }
+            
+        }
+
+        private void btThem_Click(object sender, EventArgs e)
+        {
+            //if (string.IsNullOrEmpty(keyTextBox.Text) || string.IsNullOrEmpty(valueTextBox.Text))
+            //{
+            //    MessageBox.Show("Vui lòng kiểm tra dữ liệu đã nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    return;
+            //}
+
+            //string query = @"INSERT INTO   configs ([key], [value]) VALUES (@key, @value)";
+
+            //using (DataProvider.GetSqlConnection())
+            //{
+            //    using (SqlCommand command = new SqlCommand(query, DataProvider.GetSqlConnection()))
+            //    {
+            //        try
+            //        {
+            //            DataProvider.GetSqlConnection().Open();
+
+            //            command.CommandType = CommandType.Text;
+            //            command.Parameters.AddWithValue("@key", keyTextBox.Text);
+            //            command.Parameters.AddWithValue("@value", valueTextBox.Text);
+
+            //            int efffect = command.ExecuteNonQuery();
+            //            DataProvider.GetSqlConnection().Close();
+
+            //            LoadCauHinh();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show(ex.Message);
+            //            throw;
+            //        }
+            //    }
+            //}
         }
 
         private void btThoat_Click(object sender, EventArgs e)
@@ -74,39 +103,39 @@ namespace QuanLyBanHang.Fuctions
 
         private void btSua_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(keyTextBox.Text) || string.IsNullOrEmpty(valueTextBox.Text))
-            {
-                MessageBox.Show("Vui lòng kiểm tra dữ liệu đã nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+            //if (string.IsNullOrEmpty(keyTextBox.Text) || string.IsNullOrEmpty(valueTextBox.Text))
+            //{
+            //    MessageBox.Show("Vui lòng kiểm tra dữ liệu đã nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    return;
+            //}
 
-            string query = @"UPDATE configs SET [key] = @key, [value] = @value WHERE id =@id";
+            //string query = @"UPDATE configs SET [key] = @key, [value] = @value WHERE id =@id";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    try
-                    {
-                        connection.Open();
+            //using (DataProvider.GetSqlConnection())
+            //{
+            //    using (SqlCommand command = new SqlCommand(query, DataProvider.GetSqlConnection()))
+            //    {
+            //        try
+            //        {
+            //            DataProvider.GetSqlConnection().Open();
 
-                        command.CommandType = CommandType.Text;
-                        command.Parameters.AddWithValue("@id", idTextBox.Text);
-                        command.Parameters.AddWithValue("@key", keyTextBox.Text);
-                        command.Parameters.AddWithValue("@value", valueTextBox.Text);
+            //            command.CommandType = CommandType.Text;
+            //            command.Parameters.AddWithValue("@id", idTextBox.Text);
+            //            command.Parameters.AddWithValue("@key", keyTextBox.Text);
+            //            command.Parameters.AddWithValue("@value", valueTextBox.Text);
 
-                        int efffect = command.ExecuteNonQuery();
-                        connection.Close();
+            //            int efffect = command.ExecuteNonQuery();
+            //            DataProvider.GetSqlConnection().Close();
 
-                        LoadCauHinh();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        throw;
-                    }
-                }
-            }
+            //            LoadCauHinh();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show(ex.Message);
+            //            throw;
+            //        }
+            //    }
+            //}
         }
     }
 }

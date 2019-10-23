@@ -25,6 +25,5 @@ namespace QuanLyBanHang.Data
 
         private CauHinhData() { }
 
-        public List<>
     }
 }

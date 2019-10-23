@@ -147,6 +147,7 @@
             // dgvCauHinh
             // 
             this.dgvCauHinh.AutoGenerateColumns = false;
+            this.dgvCauHinh.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvCauHinh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCauHinh.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -164,18 +165,21 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "Id";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 50;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "key";
             this.dataGridViewTextBoxColumn2.HeaderText = "key";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 60;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "value";
             this.dataGridViewTextBoxColumn3.HeaderText = "value";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 74;
             // 
             // panel6
             // 
@@ -184,9 +188,9 @@
             this.panel6.Controls.Add(this.btSua);
             this.panel6.Controls.Add(this.btXoa);
             this.panel6.Controls.Add(this.btThoat);
-            this.panel6.Location = new System.Drawing.Point(19, 397);
+            this.panel6.Location = new System.Drawing.Point(12, 397);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(628, 46);
+            this.panel6.Size = new System.Drawing.Size(632, 46);
             this.panel6.TabIndex = 3;
             // 
             // btThem
